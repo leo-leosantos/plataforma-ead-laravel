@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSupport;
+use App\Http\Controllers\Controller;
 use App\Http\Resources\SupportResource;
 use App\Repositories\SupportRepository;
+
 
 class SupportController extends Controller
 {
@@ -33,4 +34,14 @@ class SupportController extends Controller
 
         return new SupportResource($support);
     }
+
+    public function mySupports(Request $request)
+    {
+        $supports = $this->repository->getMySupports($request->all());
+
+        return SupportResource::collection($supports);
+    }
+
+
+
 }
