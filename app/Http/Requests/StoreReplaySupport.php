@@ -26,7 +26,7 @@ class StoreReplaySupport extends FormRequest
         return [
 
             'description'=>['required','min:3','max:50000'],
-            'support'=>['required','exists:reply_support,id']
+            'support'=>['required','exists:supports,id']
         ];
     }
 }
