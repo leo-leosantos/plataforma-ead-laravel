@@ -27,7 +27,7 @@ class ReplySupportTest extends TestCase
 
     public function test_create_reply_to_support_error_validations()
     {
-        $response = $this->postJson('/replies',[], $this->defaultHeaders);
+        $response = $this->postJson('/replies',[], $this->defaultHeaders());
 
         $response->assertStatus(422);
     }
@@ -42,8 +42,8 @@ class ReplySupportTest extends TestCase
             'support'=>$support->id,
             'description' => 'description reply'
         ];
-        $response = $this->postJson('/replies',$payload, $this->defaultHeaders);
+        $response = $this->postJson('/replies',$payload, $this->defaultHeaders());
 
-        $response->assertStatus(200);
+        $response->assertStatus(201);
     }
 }

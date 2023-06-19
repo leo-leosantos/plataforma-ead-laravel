@@ -26,7 +26,7 @@ class SupportRepository
     public function getSupports(array $filters = [])
     {
 
-        return $this->entity
+        return $this->entity->with('replies')
             ->where(function ($query) use ($filters) {
                 if (isset($filters['lesson'])) {
                     $query->where('lesson_id', $filters['lesson']);

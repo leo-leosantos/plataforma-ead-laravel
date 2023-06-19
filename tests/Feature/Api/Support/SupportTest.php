@@ -92,9 +92,9 @@ class SupportTest extends TestCase
             'description' =>  'description_teste',
         ];
         $response = $this->postJson('/supports',$payload, $this->defaultHeaders());
-        $response->assertStatus(200);
+        $response->assertStatus(201);
     }
 
 
-    
+
 }

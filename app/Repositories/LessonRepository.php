@@ -19,7 +19,8 @@ class LessonRepository
 
     public function getLessonsByModuleId(string $moduleId)
     {
-        return $this->entity->where('module_id', $moduleId)->get();
+        return $this->entity->with('supports.replies')
+            ->where('module_id', $moduleId)->get();
     }
 
     public function getLesson(string $identify)
@@ -28,18 +29,18 @@ class LessonRepository
     }
 
 
-    public function markLessonViewed( string $lessonId)
+    public function markLessonViewed(string $lessonId)
     {
         $user = $this->getUserAuth();
         $view = $user->view()->where('lesson_id', $lessonId)->first();
 
-        if($view){
+        if ($view) {
             $view->update([
-                'qty'=> $view->qty + 1,
+                'qty' => $view->qty + 1,
             ]);
         }
         return $user->view()->create([
-            'lesson_id'=>$lessonId,
+            'lesson_id' => $lessonId,
         ]);
     }
 }
